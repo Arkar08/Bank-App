@@ -1,75 +1,71 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import Card from '@/components/Card'
+import CurrentView from '@/components/CurrentView'
+import HeaderView from '@/components/HeaderView'
+import MenuText from '@/components/MenuText'
+import MenuView from '@/components/MenuView'
+import Entypo from '@expo/vector-icons/Entypo'
+import Ionicons from '@expo/vector-icons/Ionicons'
+import React from 'react'
+import { Text, View } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-
-export default function HomeScreen() {
+const Home = () => {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
-  );
+    <SafeAreaView className="flex-1">
+      <View>
+        <View className='flex flex-row p-5 justify-between items-center'>
+            <HeaderView>
+              <Ionicons name='person' size={24} color='white'/>
+            </HeaderView>
+            <HeaderView>
+              <Ionicons name='notifications' size={24} color='white'/>
+            </HeaderView>
+        </View>
+        <CurrentView>
+          <Text className='text-center text-3xl'>
+            Current Balance
+          </Text>
+          <Text className='text-center text-2xl mt-[20px] font-bold'>1000 Ks</Text>
+        </CurrentView>
+        <View className='flex flex-row gap-4 mt-6 justify-center items-center'>
+             <View>
+                <MenuView>
+                  <Entypo name="plus" size={24} color="black" />
+                </MenuView>
+                <MenuText menu='Transfer'/>
+            </View>
+            <View>
+              <MenuView>
+                <Entypo name="plus" size={24} color="black" />
+              </MenuView>
+              <MenuText menu='Deposit'/>
+            </View>
+             <View>
+              <MenuView>
+                <Entypo name="plus" size={24} color="black" />
+              </MenuView>
+              <MenuText menu='Withdraw'/>
+            </View>
+            <View>
+              <MenuView>
+                <Entypo name="plus" size={24} color="black" />
+              </MenuView>
+              <MenuText menu='QR'/>
+            </View>
+        </View>
+        <View className='mt-6'>
+          <Text className='p-4 text-3xl'>Recent Transactions</Text>
+          <View>
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+          </View>
+        </View>
+      </View>
+    </SafeAreaView>
+  )
 }
 
-const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
-});
+export default Home
