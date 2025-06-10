@@ -7,7 +7,7 @@ interface Props{
 
 const MenuText = ({menu}:Props) => {
   return (
-      <Text className='text-center text-2xl mt-2'>
+      <Text className='text-center text-xl mt-2'>
         {menu}
       </Text>
   )

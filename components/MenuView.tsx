@@ -3,7 +3,7 @@ import { View } from 'react-native'
 
 const MenuView = ({...props}) => {
   return (
-    <View className='border-solid border w-[75px] h-[75px] rounded-lg flex justify-center items-center' {...props}/>
+    <View className='bg-white w-[75px] h-[75px] flex justify-center items-center' style={{borderRadius:10}} {...props}/>
   )
 }
 
