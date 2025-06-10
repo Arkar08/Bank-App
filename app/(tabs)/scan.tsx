@@ -1,11 +1,54 @@
-import React from 'react'
-import { StyleSheet, Text } from 'react-native'
+import { CameraView, useCameraPermissions } from 'expo-camera'
+import React, { useEffect, useState } from 'react'
+import { Button, StyleSheet, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
+interface DataProps{
+  data:string
+}
+
+
 const ScanScreen = () => {
+  const [permission, requestPermission] = useCameraPermissions()
+  const [scanned, setScanned] = useState(false)
+
+  useEffect(() => {
+    if (scanned) {
+      const timer = setTimeout(() => setScanned(false), 3000)
+      return () => clearTimeout(timer)
+    }
+  }, [scanned])
+
+  const handleBarcodeScanned = ({ data }:DataProps) => {
+    if (!scanned) {
+      setScanned(true)
+      console.log('Scanned data:', data)
+    }
+  }
+
+  if (!permission) return <View />
+  if (!permission.granted) {
+    return (
+      <View style={styles.container1}>
+        <Text style={{ textAlign: 'center', paddingBottom: 10 }}>
+          We need your permission to show the camera
+        </Text>
+        <Button onPress={requestPermission} title="Grant permission" />
+      </View>
+    )
+  }
+
   return (
     <SafeAreaView style={styles.container}>
-      <Text>scan</Text>
+      <CameraView
+        style={StyleSheet.absoluteFill}
+        facing="back"
+        barcodeScannerSettings={{
+          barcodeTypes: ['qr'],
+        }}
+        onBarcodeScanned={handleBarcodeScanned}
+      />
+      <Text style={styles.scanText}>Scan a QR Code</Text>
     </SafeAreaView>
   )
 }
@@ -13,7 +56,20 @@ const ScanScreen = () => {
 export default ScanScreen
 
 const styles = StyleSheet.create({
-    container:{
-        flex:1
-    }
+  container: {
+    flex: 1,
+  },
+  container1: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  scanText: {
+    position: 'absolute',
+    bottom: 40,
+    width: '100%',
+    textAlign: 'center',
+    fontSize: 18,
+    color: '#fff',
+  },
 })
