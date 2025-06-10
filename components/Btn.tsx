@@ -8,8 +8,8 @@ interface BtnProps{
 
 const Btn = ({text}:BtnProps) => {
   return (
-    <Pressable className='bg-white p-4 justify-center items-center border border-solid rounded-lg'>
-      <Text className='text-2xl'>{text}</Text>
+    <Pressable className='bg-white p-4 justify-center items-center rounded-md'>
+      <Text className='text-xl'>{text}</Text>
     </Pressable>
   )
 }
