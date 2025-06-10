@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet, Text } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
-const scan = () => {
+const ScanScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Text>scan</Text>
@@ -10,7 +10,7 @@ const scan = () => {
   )
 }
 
-export default scan
+export default ScanScreen
 
 const styles = StyleSheet.create({
     container:{

@@ -4,7 +4,7 @@ import React from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
-const account = () => {
+const AccountScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Text className='text-center text-4xl'>Profile</Text>
@@ -32,7 +32,7 @@ const account = () => {
   )
 }
 
-export default account
+export default AccountScreen
 
 const styles = StyleSheet.create({
     container:{

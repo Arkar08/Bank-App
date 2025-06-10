@@ -2,7 +2,7 @@ import React from 'react'
 import { Text } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
-const transaction = () => {
+const TransactionScreen = () => {
   return (
     <SafeAreaView>
       <Text>transaction</Text>
@@ -10,4 +10,4 @@ const transaction = () => {
   )
 }
 
-export default transaction
+export default TransactionScreen

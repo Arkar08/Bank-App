@@ -2,7 +2,7 @@ import React from 'react'
 import { Text } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
-const message = () => {
+const MessageScreen = () => {
   return (
     <SafeAreaView>
       <Text>message</Text>
@@ -10,4 +10,4 @@ const message = () => {
   )
 }
 
-export default message
+export default MessageScreen

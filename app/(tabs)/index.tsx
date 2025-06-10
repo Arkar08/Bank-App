@@ -8,7 +8,7 @@ import React from "react";
 import { Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-const Home = () => {
+const HomeScreen = () => {
   const router = useRouter();
 
   const profileClick = () => {
@@ -53,4 +53,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomeScreen;
