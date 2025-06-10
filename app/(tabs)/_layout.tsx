@@ -13,7 +13,7 @@ const TabLayout = () => {
         headerShown:false,
         tabBarStyle:{
             position:"absolute",
-            bottom:10,
+            bottom:20,
             left:16,
             right:16,
             height:72,
