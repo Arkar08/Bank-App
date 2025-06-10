@@ -5,7 +5,7 @@ const Card = () => {
   return (
     <View className='w-[95%] ml-2 border-b rounded-lg flex flex-row justify-between items-center px-5 p-1'>
       <View>
-        <Text className='text-2xl'>Withdraw</Text>
+        <Text className='text-xl'>Withdraw</Text>
         <Text className='text-xl'>3h ago</Text>
       </View>
       <View>

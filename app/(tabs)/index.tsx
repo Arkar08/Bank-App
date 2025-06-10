@@ -15,10 +15,27 @@ const HomeScreen = () => {
     router.push("/(tabs)/account");
   };
 
+  const transfer = ()=>{
+    router.push("/transfer")
+  }
+
+  const deposit = ()=>{
+    router.push('/deposit')
+  }
+
+  const qrCode = ()=>{
+    router.push('/qrcode')
+  }
+
+  const withdraw = ()=>{
+    router.push('/withdraw')
+  }
+
+
   return (
     <SafeAreaView className="flex-1">
       <View>
-        <View className="flex flex-row p-5 justify-between items-center">
+        <View className="flex flex-row p-4 justify-between items-center">
           <HeaderView press={profileClick}>
             <Ionicons name="person" size={32} color="black" />
           </HeaderView>
@@ -27,19 +44,19 @@ const HomeScreen = () => {
           </HeaderView>
         </View>
         <CurrentView>
-          <Text className="text-center text-3xl">Current Balance</Text>
-          <Text className="text-center text-2xl mt-[20px] font-bold">
+          <Text className="text-center text-2xl">Current Balance</Text>
+          <Text className="text-center text-xl mt-[20px] font-semibold">
             1000 Ks
           </Text>
         </CurrentView>
-        <View className="flex flex-row gap-4 mt-6 justify-center items-center">
-         <MenuBox icon="arrow-right-arrow-left" text="Transfer"/>
-         <MenuBox icon="add" text="Deposit"/>
-         <MenuBox icon="arrow-down" text="Withdraw"/>
-         <MenuBox icon="qrcode" text="QR"/>
+        <View className="flex flex-row gap-4 mt-2 justify-center items-center">
+         <MenuBox icon="arrow-right-arrow-left" text="Transfer" changeRoute={transfer}/>
+         <MenuBox icon="add" text="Deposit" changeRoute={deposit}/>
+         <MenuBox icon="arrow-down" text="Withdraw" changeRoute={withdraw}/>
+         <MenuBox icon="qrcode" text="QRcode" changeRoute={qrCode}/>
         </View>
-        <View className="mt-3">
-          <Text className="p-4 text-3xl">Recent Transactions</Text>
+        <View>
+          <Text className="p-4 text-3xl font-semibold">Recent Transactions</Text>
           <View>
             <Card />
             <Card />

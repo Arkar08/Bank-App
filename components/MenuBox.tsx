@@ -7,14 +7,15 @@ import MenuView from "./MenuView";
 interface MenuBoxProps{
     icon:string,
     text:string
+    changeRoute:()=>void;
 }
 
 
-const MenuBox = ({icon,text}:MenuBoxProps) => {
+const MenuBox = ({icon,text,changeRoute}:MenuBoxProps) => {
   return (
-    <Pressable>
+    <Pressable onPress={changeRoute}>
       <MenuView>
-        <FontAwesome6 name={icon} size={32} color="black" />
+        <FontAwesome6 name={icon} size={24} color="black" />
       </MenuView>
       <MenuText menu={text} />
     </Pressable>
