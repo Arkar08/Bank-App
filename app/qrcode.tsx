@@ -3,7 +3,7 @@ import * as MediaLibrary from 'expo-media-library';
 import React, { useEffect, useState } from 'react';
 import { Alert, Image, Pressable, StyleSheet, Text, View } from 'react-native';
 
-const qrcode = "https://images.unsplash.com/photo-1530631673369-bc20fdb32288?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c3BsYXNofGVufDB8fDB8fHww"
+const qrcode = "http://res.cloudinary.com/dwcdqx2tm/image/upload/v1749619211/my_uploads/byo1rqkin9s9ekrl7hjy.png"
 const Qrcode = () => {
 
   const [hasPermission,setHasPermission] = useState(false)
