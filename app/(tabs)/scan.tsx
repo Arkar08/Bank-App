@@ -1,6 +1,7 @@
 import Btn from '@/components/Btn'
 import { CameraView, useCameraPermissions } from 'expo-camera'
-import React, { useEffect, useState } from 'react'
+import { useRouter } from 'expo-router'
+import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
@@ -11,20 +12,15 @@ interface DataProps{
 
 const ScanScreen = () => {
   const [permission, requestPermission] = useCameraPermissions()
-  const [scanned, setScanned] = useState(false)
+  const router = useRouter()
 
-  useEffect(() => {
-    if (scanned) {
-      const timer = setTimeout(() => setScanned(false), 3000)
-      return () => clearTimeout(timer)
-    }
-  }, [scanned])
 
   const handleBarcodeScanned = ({ data }:DataProps) => {
-    if (!scanned) {
-      setScanned(true)
-      console.log('Scanned data:', data)
-    }
+      const sliceText = data.slice(0,4)
+      const textLength = data.length;
+      if(sliceText === 'Bank' && textLength === 14){
+        router.push('/transfer/123')
+      }
   }
 
   if (!permission) return <View />
@@ -49,7 +45,6 @@ const ScanScreen = () => {
         }}
         onBarcodeScanned={handleBarcodeScanned}
       />
-      <Text style={styles.scanText}>Scan a QR Code</Text>
     </SafeAreaView>
   )
 }
@@ -64,13 +59,5 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  scanText: {
-    position: 'absolute',
-    bottom: 40,
-    width: '100%',
-    textAlign: 'center',
-    fontSize: 18,
-    color: '#fff',
   },
 })
