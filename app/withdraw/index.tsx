@@ -8,7 +8,7 @@ const Withdraw = () => {
   const router = useRouter()
 
   const withdraw = () => {
-    router.push("/withdraw/[id]")
+    router.push("/withdraw/123")
   }
 
   return (

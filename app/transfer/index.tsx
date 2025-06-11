@@ -1,16 +1,35 @@
+import RecentCard from '@/components/RecentCard'
 import TransferBtn from '@/components/TransferBtn'
 import TransferInput from '@/components/TransferInput'
+import { recentList } from '@/utils/dummy'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import { useRouter } from 'expo-router'
-import React from 'react'
-import { Text, View } from 'react-native'
+import React, { useState } from 'react'
+import { FlatList, Text, View } from 'react-native'
 
 const Transfer = () => {
 
+  const [disable,setDisable] = useState(true)
+  const [inputText,setInputText] = useState('')
   const router = useRouter()
 
   const continueClick = () => {
-    router.push("/transfer/[id]")
+    setInputText('')
+    router.push("/transfer/123")
+  }
+
+  const phoneNumberChange = (text:string) => {
+    setInputText(text)
+    if(text === ''){
+      setDisable(true)
+    }else{
+      setDisable(false)
+    }
+  }
+
+  const renderClick = (id:string) => {
+    setInputText(id)
+    setDisable(false)
   }
 
   return (
@@ -18,9 +37,9 @@ const Transfer = () => {
       <View className='bg-white mt-4 w-[95%] mx-auto rounded-lg p-4'>
         <View>
           <Text>Transfer to Phone Number</Text>
-          <TransferInput keyboardType="numeric" placeholder='Enter Phone Number'/>
+          <TransferInput keyboardType="numeric" placeholder='Enter Phone Number' change={phoneNumberChange} text={inputText}/>
           <View className='mt-4'>
-              <TransferBtn onPress={continueClick} text="Continue"/>
+              <TransferBtn onPress={continueClick} text="Continue" disable={disable}/>
           </View>
         </View>
       </View>
@@ -31,15 +50,9 @@ const Transfer = () => {
         </View>
       </View>
       <View className='m-6 gap-2'>
-          <View className='border-b border-b-[#59008c] border-solid rounded-lg p-4'>
-            <Text className='text-xl'>Aung Aung</Text>
-          </View>
-          <View className='border-b border-b-[#59008c] border-solid rounded-lg p-4'>
-            <Text className='text-xl'>Aung Aung</Text>
-          </View>
-          <View className='border-b border-b-[#59008c] border-solid rounded-lg p-4'>
-            <Text className='text-xl'>Aung Aung</Text>
-          </View>
+          <FlatList keyExtractor={(item)=>item.id} data={recentList} renderItem={({item})=>
+            <RecentCard item={item} key={item.id} renderClick={renderClick}/>
+          }/>
       </View>
     </View>
   )

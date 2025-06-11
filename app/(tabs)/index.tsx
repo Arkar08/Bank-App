@@ -2,10 +2,11 @@ import Card from "@/components/Card";
 import CurrentView from "@/components/CurrentView";
 import HeaderView from "@/components/HeaderView";
 import MenuBox from "@/components/MenuBox";
+import { transferslip } from "@/utils/dummy";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useRouter } from "expo-router";
 import React from "react";
-import { Image, Pressable, Text, View } from "react-native";
+import { FlatList, Image, Pressable, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const profileImage = require("../../assets/images/girl2.jpg")
@@ -70,11 +71,9 @@ const HomeScreen = () => {
         <View className="mt-2">
           <Text className="p-4 text-2xl font-semibold text-[#59008c]">Recent Transactions</Text>
           <View>
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
+            <FlatList data={transferslip} keyExtractor={(item)=>item.id} renderItem={({item})=>(
+              <Card item={item}/>
+            )}/>
           </View>
         </View>
       </View>

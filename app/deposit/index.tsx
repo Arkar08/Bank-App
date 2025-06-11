@@ -8,7 +8,7 @@ const Deposit = () => {
   const router = useRouter()
 
   const deposit = () => {
-    router.push("/deposit/[id]")
+    router.push("/deposit/123")
   }
 
   return (

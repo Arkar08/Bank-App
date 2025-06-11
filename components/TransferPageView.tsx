@@ -1,11 +1,15 @@
+import { transferslip } from '@/utils/dummy'
 import React from 'react'
-import { ScrollView, View } from 'react-native'
+import { FlatList, View } from 'react-native'
 import RenderCard from './RenderCard'
 
 const TransferPageView = () => {
   return (
     <View className='mt-3 flex-1'>
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <FlatList data={transferslip} keyExtractor={(item)=>item.id} renderItem={({item})=>(
+        <RenderCard item={item} key={item.id}/>
+      )}/>
+      {/* <ScrollView showsVerticalScrollIndicator={false}>
         <View className="space-y-5">
           <RenderCard text='transfer'/>
           <RenderCard text='transfer'/>
@@ -19,7 +23,7 @@ const TransferPageView = () => {
           <RenderCard text='transfer'/>
           <RenderCard text='transfer'/>
         </View>
-      </ScrollView>
+      </ScrollView> */}
     </View>
   )
 }

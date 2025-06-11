@@ -5,10 +5,15 @@ const bankImage = require('../assets/images/girl2.jpg')
 
 
 interface renderProp {
-  text:string
+  item:{
+    id:string,
+    amount:string,
+    date:string,
+    text:string
+  }
 }
 
-const RenderCard = ({text}:renderProp) => {
+const RenderCard = ({item}:renderProp) => {
   return (
     <View className='bg-white border-b border-b-[#59008c] border-solid p-4 flex-row justify-between items-center'>
       <View className='flex-row gap-2 items-center'>
@@ -16,12 +21,12 @@ const RenderCard = ({text}:renderProp) => {
             <Image source={bankImage} className='w-full h-full rounded-full object-center'/>
         </View>
         <View>
-            <Text className={text === 'withdraw' ? "text-red-500 text-xl capitalize" : text === 'deposit' ? "text-green-500 text-xl capitalize" : 'text-blue-500 text-xl capitalize'}>{text}</Text>
-            <Text className='text-gray-500 mt-1'>23/7/2025 12:00AM</Text>
+            <Text className={item.text === 'withdraw' ? "text-red-500 text-xl capitalize" : item.text === 'deposit' ? "text-green-500 text-xl capitalize" : 'text-blue-500 text-xl capitalize'}>{item.text}</Text>
+            <Text className='text-gray-500 mt-1'>{item.date}</Text>
         </View>
       </View>
       <View>
-        <Text className='text-xl font-semibold'>+10000 Ks</Text>
+        <Text className='text-xl font-semibold'>{item.amount} Ks</Text>
       </View>
     </View>
   )
