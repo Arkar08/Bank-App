@@ -48,3 +48,8 @@ Join our community of developers creating universal apps.
 
 - [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+
+
+### My Photos
+
+<img src="assets/bank-photo/homepage.jpg" width="200"/> <img src="assets/bank-photo/transferslip.jpg" width="200"/> <img src="assets/bank-photo/withdrawslip.jpg" width="200"/><img src="assets/bank-photo/depositslip.jpg" width="200"/><img src="assets/bank-photo/message.jpg" width="200"/><img src="assets/bank-photo/profile.jpg" width="200"/><img src="assets/bank-photo/transfer1.jpg" width="200"/><img src="assets/bank-photo/transfer2.jpg" width="200"/><img src="assets/bank-photo/deposit1.jpg" width="200"/><img src="assets/bank-photo/deposit2.jpg" width="200"/><img src="assets/bank-photo/withdraw1.jpg" width="200"/><img src="assets/bank-photo/withdraw2.jpg" width="200"/><img src="assets/bank-photo/qr code.jpg" width="200"/>
