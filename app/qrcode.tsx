@@ -1,10 +1,40 @@
-import React from 'react'
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native'
+import * as FileSystem from 'expo-file-system';
+import * as MediaLibrary from 'expo-media-library';
+import React, { useEffect, useState } from 'react';
+import { Alert, Image, Pressable, StyleSheet, Text, View } from 'react-native';
 
-
-const qrcode = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHQAAAB0CAYAAABUmhYnAAAAAklEQVR4AewaftIAAAKoSURBVO3BQa7jSAwFwUxC97/yGy+5KkCw5N9DMMJ8sMYo1ijFGqVYoxRrlGKNUqxRijVKsUYp1ijFGqVYoxRrlGKNUqxRijXKxZdUfikJv6TyS0n4RrFGKdYoxRrl4mFJeJLKHSonSehUuiScJOFJKk8q1ijFGqVYo1y8TOWOJNyh0iWhU+lUnqRyRxLeVKxRijVKsUa5GEalS0KnMlmxRinWKMUa5WI4lS4JncokxRqlWKMUa5SLlyXhLyWhU+mS8I0k/EuKNUqxRinWKBcPU/lLSehUuiR0Kl0STlT+ZcUapVijFGsU88H/mModSZisWKMUa5RijWI++IJKl4RO5UlJuEPlJAknKk9KwpuKNUqxRinWKBdfSkKn0iWhU+mS8JdU7kjCiUqXhF8q1ijFGqVYo5gPXqTSJaFT6ZLQqXwjCScqXRI6lZMk3KHSJeFJxRqlWKMUaxTzwRdUuiTcodIl4USlS0Kn8qYknKicJKFT6ZLwjWKNUqxRijWK+eBBKnck4USlS8KTVLoknKh0SThR6ZLwpmKNUqxRijXKxcOS8KQknKjckYQ3qZyodEl4UrFGKdYoxRrFfPAFlV9KwolKl4ROpUtCp9Il4UTljiR0Kl0SvlGsUYo1SrFGuXhYEp6kcqJyotIl4SQJJyonSfhLxRqlWKMUa5SLl6nckYQnJaFT6ZLQqXRJ6JLQqXwjCU8q1ijFGqVYo1wMp3KicqJykoR/SbFGKdYoxRrlYpgk3KHSJaFTuUPlJAlvKtYoxRqlWKNcvCwJb0pCp/INlTepdEl4UrFGKdYoxRrl4mEqv6TSJaFT6ZLQqXRJOFG5Iwm/VKxRijVKsUYxH6wxijVKsUYp1ijFGqVYoxRrlGKNUqxRijVKsUYp1ijFGqVYoxRrlGKN8h+WvQTxSBTh/gAAAABJRU5ErkJggg=="
-
+const qrcode = "https://images.unsplash.com/photo-1530631673369-bc20fdb32288?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c3BsYXNofGVufDB8fDB8fHww"
 const Qrcode = () => {
+
+  const [hasPermission,setHasPermission] = useState(false)
+
+   useEffect(() => {
+    (async () => {
+      const { status } = await MediaLibrary.requestPermissionsAsync();
+      setHasPermission(status === 'granted');
+    })();
+  }, []);
+
+  const downloadAndSaveImage = async () => {
+    try {
+      if (!hasPermission) {
+        Alert.alert('Permission required', 'Please allow access to media library.');
+        return;
+      }
+
+      const fileUri = FileSystem.documentDirectory + 'downloadedImage.jpg';
+      const downloadRes = await FileSystem.downloadAsync(qrcode, fileUri);
+
+      const asset = await MediaLibrary.createAssetAsync(downloadRes.uri);
+      await MediaLibrary.createAlbumAsync('Download', asset, false);
+      
+      Alert.alert('Success', 'Image saved to gallery!');
+    } catch (error) {
+      Alert.alert('Error', `${error}Failed to save image`);
+    }
+  };
+
+
   return (
     <View style={styles.container}>
       <Text className='text-4xl font-semibold text-center p-5'>My QR Code</Text>
@@ -13,7 +43,7 @@ const Qrcode = () => {
           <Image source={{uri:qrcode}} className='w-full h-full rounded-md p-2'/>
         </View>
         <View className='flex-row justify-between items-center gap-5 mt-10'>
-          <Pressable className='bg-green-500 p-4 rounded-md'>
+          <Pressable className='bg-green-500 p-4 rounded-md' onPress={downloadAndSaveImage}>
             <Text className='text-center text-white'>Save To Gallery</Text>
           </Pressable>
           <Pressable className='bg-green-500 p-4 rounded-md'>
