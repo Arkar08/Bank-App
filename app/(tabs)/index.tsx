@@ -5,8 +5,10 @@ import MenuBox from "@/components/MenuBox";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useRouter } from "expo-router";
 import React from "react";
-import { Text, View } from "react-native";
+import { Image, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+
+const profileImage = require("../../assets/images/girl2.jpg")
 
 const HomeScreen = () => {
   const router = useRouter();
@@ -20,7 +22,7 @@ const HomeScreen = () => {
   }
 
   const deposit = ()=>{
-    router.push('/deposit')
+    router.push("/deposit")
   }
 
   const qrCode = ()=>{
@@ -28,7 +30,7 @@ const HomeScreen = () => {
   }
 
   const withdraw = ()=>{
-    router.push('/withdraw')
+    router.push("/withdraw")
   }
 
 
@@ -36,12 +38,18 @@ const HomeScreen = () => {
     <SafeAreaView className="flex-1">
       <View>
         <View className="flex flex-row p-4 justify-between items-center">
-          <HeaderView press={profileClick}>
-            <Ionicons name="person" size={32} color="black" />
-          </HeaderView>
-          <HeaderView>
-            <Ionicons name="notifications" size={24} color="black" />
-          </HeaderView>
+          <View className="flex-row items-center gap-2">
+            <HeaderView press={profileClick}>
+              <Image source={profileImage} className="w-full h-full rounded-full object-center"/>
+            </HeaderView>
+            <View>
+              <Text className="text-xl font-semibold">Hello , Good Morning</Text>
+              <Text style={{fontSize:14}}>Arkar</Text>
+            </View>
+          </View>
+          <View className="w-[50px]  p-2 h-[50px] justify-center items-center border border-[#59008c] border-solid" style={{borderRadius:99999}}>
+            <Ionicons name="notifications" size={18} color="black" />
+          </View>
         </View>
         <CurrentView>
           <Text className="text-center text-2xl">Current Balance</Text>
@@ -56,7 +64,7 @@ const HomeScreen = () => {
          <MenuBox icon="qrcode" text="QRcode" changeRoute={qrCode}/>
         </View>
         <View>
-          <Text className="p-4 text-3xl font-semibold">Recent Transactions</Text>
+          <Text className="p-4 text-2xl font-semibold">Recent Transactions</Text>
           <View>
             <Card />
             <Card />

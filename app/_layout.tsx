@@ -7,9 +7,9 @@ export default function RootLayout() {
     <>
       <Stack>
         <Stack.Screen name="(tabs)" options={{headerShown:false}}/>
-        <Stack.Screen name="transfer" />
-        <Stack.Screen name="deposit"/>
-        <Stack.Screen name="withdraw"/>
+        <Stack.Screen name="transfer" options={{headerShown:false}}/>
+        <Stack.Screen name="deposit"  options={{headerShown:false}}/>
+        <Stack.Screen name="withdraw" options={{headerShown:false}}/>
         <Stack.Screen name="qrcode"/>
       </Stack>
       <StatusBar style="auto"/>
