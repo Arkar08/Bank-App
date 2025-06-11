@@ -1,6 +1,7 @@
+import Btn from '@/components/Btn'
 import { CameraView, useCameraPermissions } from 'expo-camera'
 import React, { useEffect, useState } from 'react'
-import { Button, StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 interface DataProps{
@@ -33,7 +34,7 @@ const ScanScreen = () => {
         <Text style={{ textAlign: 'center', paddingBottom: 10 }}>
           We need your permission to show the camera
         </Text>
-        <Button onPress={requestPermission} title="Grant permission" />
+        <Btn onPress={requestPermission} text="Grant permission" />
       </View>
     )
   }
