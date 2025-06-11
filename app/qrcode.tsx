@@ -37,7 +37,7 @@ const Qrcode = () => {
 
   return (
     <View style={styles.container}>
-      <Text className='text-4xl font-semibold text-center p-5'>My QR Code</Text>
+      <Text className='text-4xl font-semibold text-center p-5 text-[#59008c]'>My QR Code</Text>
       <View className='items-center mt-5 justify-center'>
         <View className='w-[300px] h-[300px] bg-white rounded-md'>
           <Image source={{uri:qrcode}} className='w-full h-full rounded-md p-2'/>

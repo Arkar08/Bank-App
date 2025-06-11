@@ -31,13 +31,13 @@ const Transfer = () => {
         </View>
       </View>
       <View className='m-6 gap-2'>
-          <View className='border-b border-b-blue-300 border-solid rounded-lg p-4'>
+          <View className='border-b border-b-[#59008c] border-solid rounded-lg p-4'>
             <Text className='text-xl'>Aung Aung</Text>
           </View>
-          <View className='border-b border-b-blue-300 border-solid rounded-lg p-4'>
+          <View className='border-b border-b-[#59008c] border-solid rounded-lg p-4'>
             <Text className='text-xl'>Aung Aung</Text>
           </View>
-          <View className='border-b border-b-blue-300 border-solid rounded-lg p-4'>
+          <View className='border-b border-b-[#59008c] border-solid rounded-lg p-4'>
             <Text className='text-xl'>Aung Aung</Text>
           </View>
       </View>

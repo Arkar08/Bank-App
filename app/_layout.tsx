@@ -10,7 +10,7 @@ export default function RootLayout() {
         <Stack.Screen name="transfer" options={{headerShown:false}}/>
         <Stack.Screen name="deposit"  options={{headerShown:false}}/>
         <Stack.Screen name="withdraw" options={{headerShown:false}}/>
-        <Stack.Screen name="qrcode"/>
+        <Stack.Screen name="qrcode" options={{title:"QRCode"}}/>
       </Stack>
       <StatusBar style="auto"/>
     </>

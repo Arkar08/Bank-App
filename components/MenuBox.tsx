@@ -8,16 +8,17 @@ interface MenuBoxProps{
     icon:string,
     text:string
     changeRoute:()=>void;
+    color:string;
 }
 
 
-const MenuBox = ({icon,text,changeRoute}:MenuBoxProps) => {
+const MenuBox = ({icon,text,changeRoute,color}:MenuBoxProps) => {
   return (
     <Pressable onPress={changeRoute}>
       <MenuView>
         <FontAwesome6 name={icon} size={24} color="black" />
       </MenuView>
-      <MenuText menu={text} />
+      <MenuText menu={text} color={color}/>
     </Pressable>
   );
 };
