@@ -1,7 +1,7 @@
 import Btn from '@/components/Btn'
 import ProfileCard from '@/components/ProfileCard'
-import { useRouter } from 'expo-router'
-import React from 'react'
+import { useAuthStore } from '@/store/authStore'
+import React, { useState } from 'react'
 import { Image, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
@@ -9,10 +9,19 @@ const profileImage = require("../../assets/images/girl2.jpg")
 
 const AccountScreen = () => {
 
-  const router = useRouter()
+  const logout = useAuthStore((state)=> state.logout)
+  const [loading,setLoading] = useState(false)
 
-  const logout = () => {
-    router.push('/auth/login')
+  const logoutClick = async() => {
+    setLoading(true)
+    await logout()
+    setLoading(false)
+  }
+
+  if(loading){
+    return (
+      <Text>Loading</Text>
+    )
   }
 
   return (
@@ -44,7 +53,7 @@ const AccountScreen = () => {
        </View>
       </View>
       <View className='mt-8 w-[95%] mx-auto'>
-        <Btn text="Logout" onPress={logout}/>
+        <Btn text="Logout" onPress={logoutClick}/>
       </View>
     </SafeAreaView>
   )

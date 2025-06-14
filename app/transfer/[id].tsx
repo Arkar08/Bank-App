@@ -9,8 +9,7 @@ const TransferDetail = () => {
                 <Text className="text-2xl py-3">Arkar(09455666777)</Text>
             </View>
             <View className="mt-6">
-                <Text className="text-xl">Amount</Text>
-                <TransferInput keyboardType={"numeric"} placeholder="Enter Amount"/>
+                <TransferInput keyboardType={"numeric"} placeholder="Enter Amount" label="Amount"/>
             </View>
             <View className="flex-row justify-between items-center mt-4">
                 <Text className="text-gray-500">Available Amount</Text>
@@ -18,7 +17,7 @@ const TransferDetail = () => {
             </View>
             <View className="mt-6">
                 <Text className="text-xl">Notes</Text>
-                <TransferInput placeholder="Enter Notes" keyboardType={'default'}/>
+                <TransferInput placeholder="Enter Notes" keyboardType={'default'} label="Notes"/>
             </View>
            <View className='mt-6'>
                <TransferBtn text="Transfer"/>

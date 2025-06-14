@@ -36,8 +36,7 @@ const Transfer = () => {
     <View>
       <View className='bg-white mt-4 w-[95%] mx-auto rounded-lg p-4'>
         <View>
-          <Text>Transfer to Phone Number</Text>
-          <TransferInput keyboardType="numeric" placeholder='Enter Phone Number' change={phoneNumberChange} text={inputText}/>
+          <TransferInput keyboardType="numeric" placeholder='Enter Phone Number' change={phoneNumberChange} value={inputText} label='Transfer to Phone Number'/>
           <View className='mt-4'>
               <TransferBtn onPress={continueClick} text="Continue" disable={disable}/>
           </View>

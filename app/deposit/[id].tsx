@@ -6,12 +6,10 @@ const DepositDetails = () => {
   return (
     <View className="mt-6 px-[15px]">
         <View className="mt-6">
-            <Text className="text-xl">Phone Number</Text>
-            <TransferInput keyboardType={"numeric"} placeholder="Enter Phone Number" />
+            <TransferInput keyboardType={"numeric"} placeholder="Enter Phone Number" label="Phone Number"/>
         </View>
         <View className="mt-6">
-            <Text className="text-xl">Amount</Text>
-            <TransferInput keyboardType={"numeric"} placeholder="Enter Amount" />
+            <TransferInput keyboardType={"numeric"} placeholder="Enter Amount" label="Amount"/>
         </View>
         <View className="flex-row justify-between items-center mt-4">
             <Text className="text-gray-500">Available Amount</Text>
