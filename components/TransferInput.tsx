@@ -5,11 +5,12 @@ interface TransferInputProps{
     placeholder:string,
     change?:(text:string) => void;
     text?:string;
+    secure?:boolean
 }
 
-const TransferInput = ({keyboardType,placeholder,change,text}:TransferInputProps) => {
+const TransferInput = ({keyboardType,placeholder,change,text,secure}:TransferInputProps) => {
     return (
-        <TextInput keyboardType={keyboardType} value={text}  placeholder={placeholder} onChangeText={change} className='p-5 bg-white border-b border-solid border-b-[#59008c] mt-3 rounded-lg'/>
+        <TextInput secureTextEntry={secure} keyboardType={keyboardType} value={text}  placeholder={placeholder} onChangeText={change} className='p-5 bg-white border-b border-solid border-b-[#59008c] mt-3 rounded-lg'/>
     )
 }
 
