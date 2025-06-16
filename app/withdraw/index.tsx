@@ -13,7 +13,7 @@ const Withdraw = () => {
 
   return (
     <View className='mt-6 w-[95%] mx-auto'>
-      <ProfileCard text='Cash Out Branch' profilePress={withdraw}/>
+      <ProfileCard text='Cash Out ATM Card' profilePress={withdraw}/>
     </View>
   )
 }

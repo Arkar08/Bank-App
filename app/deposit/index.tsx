@@ -13,7 +13,7 @@ const Deposit = () => {
 
   return (
     <View className='mt-6 w-[95%] mx-auto'>
-      <ProfileCard text='Cash In Branch' profilePress={deposit}/>
+      <ProfileCard text='Cash In ATM Card' profilePress={deposit}/>
     </View>
   )
 }

@@ -30,7 +30,7 @@ const useTransactionStore = create<transactionProps>((set)=>({
             const response = await axios.get(`${API_URL}transaction/${userId}`)
             const dataList = response.data.data;
             set({allTransaction:response.data.data})
-            set({recentList:dataList.slice(0,6)})
+            set({recentList:dataList.slice(0,5)})
         } catch (error:any) {
            throw (error.response.data.message)
         }

@@ -1,6 +1,7 @@
 import RecentCard from '@/components/RecentCard'
 import TransferBtn from '@/components/TransferBtn'
 import TransferInput from '@/components/TransferInput'
+import useTransfer from '@/store/useTransfer'
 import { recentList } from '@/utils/dummy'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import { useRouter } from 'expo-router'
@@ -12,11 +13,8 @@ const Transfer = () => {
   const [disable,setDisable] = useState(true)
   const [inputText,setInputText] = useState('')
   const router = useRouter()
+  const {postPhone} = useTransfer()
 
-  const continueClick = () => {
-    setInputText('')
-    router.push("/transfer/123")
-  }
 
   const phoneNumberChange = (text:string) => {
     setInputText(text)
@@ -24,6 +22,19 @@ const Transfer = () => {
       setDisable(true)
     }else{
       setDisable(false)
+    }
+  }
+
+    const continueClick = async() => {
+    try {
+      const response:any = await postPhone(inputText)
+      if(response?.message === 'Fetch PhoneNumber Successfully.'){
+        router.push(`/transfer/${response.data._id}`)
+        setInputText('')
+      }
+    } catch (error) {
+      setInputText('')
+      throw(error)
     }
   }
 
@@ -36,7 +47,7 @@ const Transfer = () => {
     <View>
       <View className='bg-white mt-4 w-[95%] mx-auto rounded-lg p-4'>
         <View>
-          <TransferInput keyboardType="numeric" placeholder='Enter Phone Number' change={phoneNumberChange} value={inputText} label='Transfer to Phone Number'/>
+          <TransferInput keyboardType="numeric" placeholder='Enter Phone Number' change={phoneNumberChange} value={inputText} label='Transfer to Phone Number' maxLength={11}/>
           <View className='mt-4'>
               <TransferBtn onPress={continueClick} text="Continue" disable={disable}/>
           </View>

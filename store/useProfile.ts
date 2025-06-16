@@ -13,7 +13,8 @@ interface ProfileProps{
         profile:string,
         account:{
             balance:number,
-            qrCode:string
+            qrCode:string,
+            accountNo:string
         }
     },
     getUsers:()=>void;
@@ -27,7 +28,8 @@ const useProfile = create<ProfileProps>((set)=>({
         profile:"",
         account:{
             balance:0,
-            qrCode:''
+            qrCode:'',
+            accountNo:""
         }
     },
 
