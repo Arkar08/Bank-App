@@ -105,8 +105,8 @@ const HomeScreen = () => {
          <MenuBox icon="arrow-down" text="Withdraw" changeRoute={withdraw} color="red"/>
          <MenuBox icon="qrcode" text="QRcode" changeRoute={qrCode} color="#59008c"/>
         </View>
-        <View className="mt-2">
-          <Text className="p-4 text-2xl font-semibold text-[#59008c]">Recent Transactions</Text>
+        <View>
+          <Text className="p-3 text-2xl font-semibold text-[#59008c]">Recent Transactions</Text>
           <View>
            {
             recentList.length > 0 ? (
@@ -122,8 +122,8 @@ const HomeScreen = () => {
           </View>
           {
             loading && (
-              <View>
-                <ActivityIndicator />
+              <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+                <ActivityIndicator size={'large'}/>
               </View>
             )
           }

@@ -9,8 +9,8 @@ const MessageScreen = () => {
       <View className='mt-4'>
         <Text className='text-2xl text-center text-[#59008c] font-semibold'>All message</Text>
       </View>
-      <ScrollView className='mt-3'>
-        <View className='space-y-3 gap-5'>
+      <ScrollView className='mt-2'>
+        <View className='space-y-2 gap-5'>
           <CardMessage />
           <CardMessage />
         </View>

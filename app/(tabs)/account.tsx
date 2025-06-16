@@ -3,7 +3,7 @@ import ProfileCard from '@/components/ProfileCard'
 import { useAuthStore } from '@/store/authStore'
 import useProfile from '@/store/useProfile'
 import React, { useState } from 'react'
-import { Image, Text, View } from 'react-native'
+import { ActivityIndicator, Image, Platform, Text, View, ViewStyle } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 
@@ -21,9 +21,32 @@ const AccountScreen = () => {
 
   if(loading){
     return (
-      <Text>Loading</Text>
+      <View style={{flex:1 ,justifyContent:'center',alignItems:'center'}}>
+        <ActivityIndicator size={'large'}/>
+      </View>
     )
   }
+
+    const shadowStyle: ViewStyle = {
+      borderRadius: 99999,
+      backgroundColor: 'white',
+      width: 120,
+      height: 120,
+      justifyContent: 'center',
+      alignItems: 'center',
+      ...Platform.select({
+        ios: {
+          shadowColor: '#000',
+          shadowOffset: { width: 0, height: 2 },
+          shadowOpacity: 0.25,
+          shadowRadius: 3.84,
+        },
+        android: {
+          elevation: 5,
+        },
+      }),
+  };
+
 
   return (
     <SafeAreaView className='flex-1'>
@@ -31,7 +54,7 @@ const AccountScreen = () => {
         <Text className='text-center text-2xl font-semibold text-[#59008c]'>Profile</Text>
       </View>
       <View className='justify-center items-center mt-2'>
-        <View className='bg-gray-400 w-40 h-40 rounded-full'>
+        <View style={shadowStyle}>
           {
             userList.profile !== '' && (
               <Image source={{uri:userList.profile}} className='w-full h-full rounded-full  object-center'/>

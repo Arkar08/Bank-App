@@ -8,7 +8,7 @@ interface CurrentProps{
 
 const CurrentView = ({children,color}:CurrentProps) => {
   return (
-      <View className="w-[380px] h-[150px] justify-center mx-auto rounded-lg p-3" style={{backgroundColor:color}}>
+      <View className="w-[360px] h-[150px] justify-center mx-auto rounded-lg p-3" style={{backgroundColor:color}}>
         {children}
       </View> 
   )

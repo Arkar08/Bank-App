@@ -21,7 +21,11 @@ interface ProfileProps{
             cardNo:string
         }
     },
+    account:{
+        customerName:string
+    };
     getUsers:()=>void;
+    getAccount:(accountNo:string) =>void;
 }
 
 const useProfile = create<ProfileProps>((set)=>({
@@ -38,7 +42,10 @@ const useProfile = create<ProfileProps>((set)=>({
         card:{
             cardBalance:0,
             cardNo:""
-        }
+        },
+    },
+    account:{
+        customerName:''
     },
 
     getUsers:async()=>{
@@ -48,6 +55,17 @@ const useProfile = create<ProfileProps>((set)=>({
             axios.defaults.headers.common['Authorization'] = `Baerer ${token}`
             const response = await axios.get(`${API_URL}user/${userId}`)
             set({userList:response.data.data})
+        } catch (error:any) {
+            throw(error.response.data.message)
+        }
+    },
+
+    getAccount:async(accountNo:string)=>{
+        const token = await SecureStore.getItemAsync("token")
+        try {
+            axios.defaults.headers.common['Authorization'] = `Baerer ${token}`
+            const response = await axios.get(`${API_URL}account/find/${accountNo}`)
+            set({account:response.data.data})
         } catch (error:any) {
             throw(error.response.data.message)
         }

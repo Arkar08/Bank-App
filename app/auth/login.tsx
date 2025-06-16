@@ -5,7 +5,7 @@ import { useAuthStore } from '@/store/authStore'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import { Link, useRouter } from 'expo-router'
 import { useState } from 'react'
-import { Alert, Image, Text, View } from 'react-native'
+import { ActivityIndicator, Alert, Image, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 const  loginImage = require('../../assets/images/login.png')
@@ -15,6 +15,7 @@ const Login = () => {
     const [show,setShow] = useState(true)
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
+    const [loading,setLoading] = useState(false)
     const router = useRouter()
     const login = useAuthStore((state)=> state.login)
 
@@ -23,6 +24,7 @@ const Login = () => {
     }
 
     const loginBtn = async() => {
+        setLoading(true)
 
         if(email === '' || password === ''){
             Alert.alert("Please Filledout in the form field.")
@@ -41,6 +43,8 @@ const Login = () => {
             Alert.alert(error)
             setPassword('')
            setEmail('')
+       }finally{
+        setLoading(false)
        }
     }
 
@@ -50,6 +54,14 @@ const Login = () => {
 
     const passwordChange = (text:string) => {
         setPassword(text)
+    }
+
+    if(loading){
+        return (
+            <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+                <ActivityIndicator size={'large'}/>
+            </View>
+        )
     }
 
   return (

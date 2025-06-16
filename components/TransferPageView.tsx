@@ -20,10 +20,10 @@ const TransferPageView = () => {
   },[allTransaction])
 
   return (
-    <View className='mt-3 flex-1'>
+    <View className='mt-1 flex-1'>
       {
         transfer.length > 0 ? (
-           <FlatList data={transfer} keyExtractor={(item)=>item._id} renderItem={({item})=>(
+           <FlatList data={transfer} keyExtractor={(item)=>item._id} showsVerticalScrollIndicator={false} renderItem={({item})=>(
           <RenderCard item={item} key={item._id}/>
         )}/>
         ):(

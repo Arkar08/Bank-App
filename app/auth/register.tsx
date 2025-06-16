@@ -4,20 +4,21 @@ import { useAuthStore } from '@/store/authStore'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import { Link, useRouter } from 'expo-router'
 import React, { useState } from 'react'
-import { Alert, Text, View } from 'react-native'
+import { ActivityIndicator, Alert, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 
 const Register = () => {
 
-     const [show,setShow] = useState(true)
-     const [confirm ,setConfirm] = useState(true)
+        const [show,setShow] = useState(true)
+        const [confirm ,setConfirm] = useState(true)
         const [email,setEmail] = useState('')
         const [password,setPassword] = useState('')
         const [phoneNumber,setPhoneNumber] = useState('')
         const [name,setName] = useState('')
         const [confirmPassword,setConfirmPassword] = useState('')
         const [error,setError] = useState('')
+        const [loading,setLoading] = useState(false)
         const router = useRouter()
         const signup = useAuthStore((state)=> state.signup)
     
@@ -30,6 +31,7 @@ const Register = () => {
         }
     
         const registerBtn = async() => {
+            setLoading(true)
             if(password !== confirmPassword){
                 setError('Password do not match')
                 return;
@@ -55,6 +57,8 @@ const Register = () => {
                 setPhoneNumber('')
                 setError('')
                 setConfirmPassword('')
+           }finally{
+            setLoading(false)
            }
         }
     
@@ -76,6 +80,14 @@ const Register = () => {
 
         const confirmPasswordChange = (text:string)=>{
             setConfirmPassword(text)
+        }
+
+        if(loading){
+            return (
+                <View>
+                    <ActivityIndicator size={'large'}/>
+                </View>
+            )
         }
 
   return (

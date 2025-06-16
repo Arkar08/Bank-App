@@ -22,11 +22,11 @@ const DepositPageView = () => {
   
 
   return (
-    <View className='mt-3 flex-1'>
+    <View className='mt-1 flex-1'>
      {
       deposit.length > 0 ?(
-         <FlatList data={deposit} keyExtractor={(item)=>item._id} renderItem={({item})=>(
-        <RenderCard item={item} key={item._id}/>
+         <FlatList data={deposit} keyExtractor={(item)=>item._id} showsVerticalScrollIndicator={false} renderItem={({item})=>(
+        <RenderCard item={item} key={item._id} />
       )}/>
       ):(
         <View>
