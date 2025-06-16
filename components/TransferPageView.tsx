@@ -32,21 +32,6 @@ const TransferPageView = () => {
           </View>
         )
       }
-      {/* <ScrollView showsVerticalScrollIndicator={false}>
-        <View className="space-y-5">
-          <RenderCard text='transfer'/>
-          <RenderCard text='transfer'/>
-          <RenderCard text='transfer'/>
-          <RenderCard text='transfer'/>
-          <RenderCard text='transfer'/>
-          <RenderCard text='transfer'/>
-          <RenderCard text='transfer'/>
-          <RenderCard text='transfer'/>
-          <RenderCard text='transfer'/>
-          <RenderCard text='transfer'/>
-          <RenderCard text='transfer'/>
-        </View>
-      </ScrollView> */}
     </View>
   )
 }

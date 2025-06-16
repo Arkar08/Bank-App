@@ -34,21 +34,6 @@ const DepositPageView = () => {
         </View>
       )
      }
-      {/* <ScrollView showsVerticalScrollIndicator={false}>
-        <View className="space-y-5">
-          <RenderCard text='deposit'/>
-          <RenderCard text='deposit'/>
-          <RenderCard text='deposit'/>
-          <RenderCard text='deposit'/>
-          <RenderCard text='deposit'/>
-          <RenderCard text='deposit'/>
-          <RenderCard text='deposit'/>
-          <RenderCard text='deposit'/>
-          <RenderCard text='deposit'/>
-          <RenderCard text='deposit'/>
-          <RenderCard text='deposit'/>
-        </View>
-      </ScrollView> */}
     </View>
   )
 }
