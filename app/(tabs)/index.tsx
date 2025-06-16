@@ -93,10 +93,10 @@ const HomeScreen = () => {
             <Ionicons name="notifications" size={18} color="#59008c" />
           </Pressable>
         </View>
-        <CurrentView>
+        <CurrentView color={'white'}>
           <Text className="text-center text-3xl text-[#59008c] font-semibold">Current Balance</Text>
           <Text className="text-center text-xl mt-[20px] font-semibold text-[#59008c]">
-            {userList.account.balance} Ks
+            {userList.account.balance}.00 Ks
           </Text>
         </CurrentView>
         <View className="flex flex-row gap-4 mt-2 justify-center items-center">

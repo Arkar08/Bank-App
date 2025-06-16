@@ -9,6 +9,8 @@ interface TransferProps{
     getUserId:(userId:string) =>void;
     users:any;
     postTransfer:(fromCustomerName:string,toCustomerName:string,amount:number,note:string)=>void;
+    postDeposit:(fromCustomerName:string,amount:number) =>void;
+    postWithdraw:(fromCustomerName:string,amount:number) =>void;
 }
 
 
@@ -53,6 +55,40 @@ const useTransfer = create<TransferProps>((set)=>({
             const response = await axios.post(`${API_URL}transaction`,data)
             return response.data;
         } catch (error:any) {
+             throw(error.response.data.message)
+        }
+    },
+
+    postDeposit:async(fromCustomerName:string,amount:number) => {
+        const data = {
+            fromCustomerName:fromCustomerName,
+            amount:amount,
+            transactionType:"Deposit",
+        }
+        const token = await SecureStore.getItemAsync('token')
+        try {
+             axios.defaults.headers.common['Authorization'] = `Baerer ${token}`
+            const response = await axios.post(`${API_URL}transaction`,data)
+            return response.data;
+        } catch (error:any) {
+            console.log(error.response.data.message)
+             throw(error.response.data.message)
+        }
+    },
+
+    postWithdraw:async(fromCustomerName:string,amount:number) => {
+        const data = {
+            fromCustomerName:fromCustomerName,
+            amount:amount,
+            transactionType:"Withdraw",
+        }
+        const token = await SecureStore.getItemAsync('token')
+        try {
+             axios.defaults.headers.common['Authorization'] = `Baerer ${token}`
+            const response = await axios.post(`${API_URL}transaction`,data)
+            return response.data;
+        } catch (error:any) {
+            console.log(error.response.data.message)
              throw(error.response.data.message)
         }
     }

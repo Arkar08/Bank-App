@@ -93,7 +93,7 @@ const TransferDetail = () => {
       </View>
       <View className="flex-row justify-between items-center mt-4">
         <Text className="text-gray-500">Available Amount</Text>
-        <Text className="text-gray-500">{userList.account.balance} Ks</Text>
+        <Text className="text-gray-500">{userList.account.balance}.00 Ks</Text>
       </View>
       <View className="mt-6">
         <TransferInput
