@@ -1,16 +1,17 @@
 import Btn from '@/components/Btn'
 import ProfileCard from '@/components/ProfileCard'
 import { useAuthStore } from '@/store/authStore'
+import useProfile from '@/store/useProfile'
 import React, { useState } from 'react'
 import { Image, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
-const profileImage = require("../../assets/images/girl2.jpg")
 
 const AccountScreen = () => {
 
   const logout = useAuthStore((state)=> state.logout)
   const [loading,setLoading] = useState(false)
+  const {userList} = useProfile()
 
   const logoutClick = async() => {
     setLoading(true)
@@ -31,11 +32,15 @@ const AccountScreen = () => {
       </View>
       <View className='justify-center items-center mt-2'>
         <View className='bg-gray-400 w-40 h-40 rounded-full'>
-          <Image source={profileImage} className='w-full h-full rounded-full  object-center'/>
+          {
+            userList.profile !== '' && (
+              <Image source={{uri:userList.profile}} className='w-full h-full rounded-full  object-center'/>
+            )
+          }
         </View>
         <View className='mt-4'>
-          <Text className='text-center text-xl font-semibold text-[#59008c]'>Arkar</Text>
-          <Text className='text-center text-xl font-semibold text-[#59008c]'>arkar@gmail.com</Text>
+          <Text className='text-center text-xl font-semibold text-[#59008c] capitalize'>{userList.name}</Text>
+          <Text className='text-center text-xl font-semibold text-[#59008c]'>{userList.email}</Text>
           <View className='mt-4'>
             <Btn text='Edit Profile'/>
           </View>

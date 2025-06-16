@@ -1,12 +1,14 @@
+import useProfile from '@/store/useProfile';
 import * as FileSystem from 'expo-file-system';
 import * as MediaLibrary from 'expo-media-library';
 import React, { useEffect, useState } from 'react';
 import { Alert, Image, Pressable, StyleSheet, Text, View } from 'react-native';
 
-const qrcode = "http://res.cloudinary.com/dwcdqx2tm/image/upload/v1749619211/my_uploads/byo1rqkin9s9ekrl7hjy.png"
+// const qrcode = "http://res.cloudinary.com/dwcdqx2tm/image/upload/v1749619211/my_uploads/byo1rqkin9s9ekrl7hjy.png"
 const Qrcode = () => {
 
   const [hasPermission,setHasPermission] = useState(false)
+  const {userList} = useProfile()
 
    useEffect(() => {
     (async () => {
@@ -23,7 +25,7 @@ const Qrcode = () => {
       }
 
       const fileUri = FileSystem.documentDirectory + 'downloadedImage.jpg';
-      const downloadRes = await FileSystem.downloadAsync(qrcode, fileUri);
+      const downloadRes = await FileSystem.downloadAsync(userList.account.qrCode, fileUri);
 
       const asset = await MediaLibrary.createAssetAsync(downloadRes.uri);
       await MediaLibrary.createAlbumAsync('Download', asset, false);
@@ -40,7 +42,7 @@ const Qrcode = () => {
       <Text className='text-4xl font-semibold text-center p-5 text-[#59008c]'>My QR Code</Text>
       <View className='items-center mt-5 justify-center'>
         <View className='w-[300px] h-[300px] bg-white rounded-md'>
-          <Image source={{uri:qrcode}} className='w-full h-full rounded-md p-2'/>
+          <Image source={{uri:userList.account.qrCode}} className='w-full h-full rounded-md p-2'/>
         </View>
         <View className='flex-row justify-between items-center gap-5 mt-10'>
           <Pressable className='bg-green-500 p-4 rounded-md' onPress={downloadAndSaveImage}>

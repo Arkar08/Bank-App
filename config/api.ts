@@ -1,0 +1,1 @@
+export const API_URL = "https://banking-mangament-system-with-atm.onrender.com/api/v1/"

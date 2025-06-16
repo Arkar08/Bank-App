@@ -6,10 +6,10 @@ const bankImage = require('../assets/images/girl2.jpg')
 
 interface renderProp {
   item:{
-    id:string,
+    _id:string,
     amount:string,
-    date:string,
-    text:string
+    transactionTime:string,
+    transactionType:string
   }
 }
 
@@ -21,8 +21,8 @@ const RenderCard = ({item}:renderProp) => {
             <Image source={bankImage} className='w-full h-full rounded-full object-center'/>
         </View>
         <View>
-            <Text className={item.text === 'withdraw' ? "text-red-500 text-xl capitalize" : item.text === 'deposit' ? "text-green-500 text-xl capitalize" : 'text-blue-500 text-xl capitalize'}>{item.text}</Text>
-            <Text className='text-gray-500 mt-1'>{item.date}</Text>
+            <Text className={item.transactionType === 'Withdraw' ? "text-red-500 text-xl capitalize" : item.transactionType === 'Deposit' ? "text-green-500 text-xl capitalize" : 'text-blue-500 text-xl capitalize'}>{item.transactionType}</Text>
+            <Text className='text-gray-500 mt-1'>{item.transactionTime}</Text>
         </View>
       </View>
       <View>

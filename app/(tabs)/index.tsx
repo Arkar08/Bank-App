@@ -2,16 +2,49 @@ import Card from "@/components/Card";
 import CurrentView from "@/components/CurrentView";
 import HeaderView from "@/components/HeaderView";
 import MenuBox from "@/components/MenuBox";
-import { transferslip } from "@/utils/dummy";
+import useProfile from "@/store/useProfile";
+import useTransactionStore from "@/store/useTransactionStore";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useRouter } from "expo-router";
-import React from "react";
-import { FlatList, Image, Pressable, Text, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { ActivityIndicator, FlatList, Image, Pressable, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-const profileImage = require("../../assets/images/girl2.jpg")
 
 const HomeScreen = () => {
+
+  const {recentList,getRecentList} = useTransactionStore()
+  const {userList,getUsers} = useProfile()
+  const [loading,setLoading] = useState(false)
+
+  useEffect(()=>{
+    const fetchRecent = async()=>{
+      setLoading(true)
+      try {
+        await getRecentList()
+      } catch (error:any) {
+        throw (error.response.data.message)
+      }finally{
+        setLoading(false)
+      }
+    }
+
+    const fetchUserProfile = async()=>{
+      setLoading(true)
+      try {
+        await getUsers()
+      } catch (error:any) {
+        throw (error.response.data.message)
+      }finally{
+        setLoading(false)
+      }
+    }
+
+    fetchRecent()
+    fetchUserProfile()
+  },[getRecentList,getUsers])
+
+
   const router = useRouter();
 
   const profileClick = () => {
@@ -45,11 +78,15 @@ const HomeScreen = () => {
         <View className="flex flex-row p-4 justify-between items-center">
           <View className="flex-row items-center gap-2">
             <HeaderView press={profileClick}>
-              <Image source={profileImage} className="w-full h-full rounded-full object-center"/>
+              {
+                userList.profile !== '' && (
+                  <Image source={{uri:userList.profile}} className="w-full h-full rounded-full object-center"/>
+                )
+              }
             </HeaderView>
             <View>
               <Text className="text-xl font-semibold text-[#59008c]">Hello,Good Morning</Text>
-              <Text style={{fontSize:16,fontWeight:'bold'}} className="text-[#59008c]">Arkar</Text>
+              <Text style={{fontSize:16,fontWeight:'bold'}} className="text-[#59008c] capitalize">{userList.name}</Text>
             </View>
           </View>
           <Pressable className="w-[40px]  p-2 h-[40px] justify-center items-center" style={{borderRadius:99999}} onPress={notiClick}>
@@ -59,7 +96,7 @@ const HomeScreen = () => {
         <CurrentView>
           <Text className="text-center text-3xl text-[#59008c] font-semibold">Current Balance</Text>
           <Text className="text-center text-xl mt-[20px] font-semibold text-[#59008c]">
-            1000 Ks
+            {userList.account.balance} Ks
           </Text>
         </CurrentView>
         <View className="flex flex-row gap-4 mt-2 justify-center items-center">
@@ -71,10 +108,25 @@ const HomeScreen = () => {
         <View className="mt-2">
           <Text className="p-4 text-2xl font-semibold text-[#59008c]">Recent Transactions</Text>
           <View>
-            <FlatList data={transferslip} keyExtractor={(item)=>item.id} renderItem={({item})=>(
-              <Card item={item}/>
-            )}/>
+           {
+            recentList.length > 0 ? (
+               <FlatList data={recentList} keyExtractor={(item)=>item._id} renderItem={({item})=>(
+                <Card item={item}/>
+              )}/>
+            ):(
+              <View>
+                <Text  className="text-xl font-semibold text-center">No Recent List Found.</Text>
+              </View>
+            )
+           }
           </View>
+          {
+            loading && (
+              <View>
+                <ActivityIndicator />
+              </View>
+            )
+          }
         </View>
       </View>
     </SafeAreaView>

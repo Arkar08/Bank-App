@@ -1,9 +1,9 @@
+import { API_URL } from '@/config/api';
 import axios from 'axios';
 import * as SecureStore from 'expo-secure-store';
 import { create } from 'zustand';
 
 
-const API_URL = "https://banking-mangament-system-with-atm.onrender.com/api/v1/"
 
 interface AuthProps{
     user:string | null,
@@ -46,11 +46,12 @@ export const useAuthStore = create<AuthProps>((set)=>({
         }
         try {
             const response = await axios.post(`${API_URL}auth/login`,data)
-            const {token,email,message} = response.data
-            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-            await SecureStore.setItemAsync("user",email)
-            await SecureStore.setItemAsync('token', token);
-            set({ user: email, token })
+            const {token,email,message,_id} = response.data
+                axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+                await SecureStore.setItemAsync("user",email)
+                await SecureStore.setItemAsync('token', token);
+                await SecureStore.setItemAsync("userId",_id)
+                set({ user: email, token })
             return {message}
         } catch (error:any) {
             throw (error.response.data.message)
@@ -68,10 +69,11 @@ export const useAuthStore = create<AuthProps>((set)=>({
 
         try {
             const response = await axios.post(`${API_URL}auth/signup`,data)
-            const {token,email,message} = response.data
+            const {token,email,message,_id} = response.data
             axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
             await SecureStore.setItemAsync("user",email)
             await SecureStore.setItemAsync('token', token);
+            await SecureStore.setItemAsync("userId",_id)
             set({ user: email, token })
             return {message}
         } catch (error:any) {
@@ -90,8 +92,8 @@ export const useAuthStore = create<AuthProps>((set)=>({
                 set({ user: null, token: null });
                 axios.defaults.headers.common['Authorization'] = '';
             }
-        } catch (error) {
-            console.log(error)
+        } catch (error:any) {
+            throw (error.response.data.message)
         }
     }
 }))

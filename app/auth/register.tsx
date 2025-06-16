@@ -36,7 +36,7 @@ const Register = () => {
             }
     
            try {
-                const res:any = await signup(email,password,name,phoneNumber)
+                const res:any = await signup(email,name,password,phoneNumber)
                 if(res?.message === "Signup Successfully"){
                     Alert.alert(res.message)
                     router.push("/(tabs)")
