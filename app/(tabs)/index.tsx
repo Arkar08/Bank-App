@@ -22,8 +22,8 @@ const HomeScreen = () => {
       setLoading(true)
       try {
         await getRecentList()
-      } catch (error:any) {
-        throw (error.response.data.message)
+      } catch (error) {
+        throw (error)
       }finally{
         setLoading(false)
       }
@@ -33,8 +33,8 @@ const HomeScreen = () => {
       setLoading(true)
       try {
         await getUsers()
-      } catch (error:any) {
-        throw (error.response.data.message)
+      } catch (error) {
+        throw (error)
       }finally{
         setLoading(false)
       }

@@ -95,7 +95,6 @@ const useProfile = create<ProfileProps>((set)=>({
          try {
             axios.defaults.headers.common['Authorization'] = `Baerer ${token}`
             const response = await axios.put(`${API_URL}user/${userId}`,data)
-            console.log(response)
             return response.data;
         } catch (error:any) {
             throw(error.response.data.message)

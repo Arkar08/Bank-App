@@ -111,7 +111,6 @@ const Profile = () => {
             if(response.message === 'Update User Successfully.'){
                 router.replace("/(tabs)/account")
             }
-            console.log(response)
         } catch (error) {
             throw(error)
         }
@@ -156,7 +155,7 @@ const Profile = () => {
                     <TransferInput placeholder='Address' label='Address' value={users.address} change={addressChange}/>
                 </View>
             </View>
-            <View className='absolute w-[96vw] bottom-10 right-[10px]'>
+            <View className='absolute w-[96vw] bottom-20 right-[10px]'>
                 <TransferBtn text='Save' onPress={saveBtn}/>
             </View>
         </View>

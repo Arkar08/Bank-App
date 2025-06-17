@@ -71,7 +71,6 @@ const useTransfer = create<TransferProps>((set)=>({
             const response = await axios.post(`${API_URL}transaction`,data)
             return response.data;
         } catch (error:any) {
-            console.log(error.response.data.message)
              throw(error.response.data.message)
         }
     },
@@ -88,7 +87,6 @@ const useTransfer = create<TransferProps>((set)=>({
             const response = await axios.post(`${API_URL}transaction`,data)
             return response.data;
         } catch (error:any) {
-            console.log(error.response.data.message)
              throw(error.response.data.message)
         }
     }
