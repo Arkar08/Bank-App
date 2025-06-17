@@ -22,7 +22,7 @@ const RenderCard = ({item}:renderProp) => {
             <Image source={bankImage} className='w-full h-full rounded-full object-center'/>
         </View>
         <View>
-            <Text className={item.transactionType === 'Withdraw' ? "text-red-500 text-xl capitalize" : item.transactionType === 'Deposit' ? "text-green-500 text-xl capitalize" : 'text-blue-500 text-xl capitalize'}>{item.transactionType}</Text>
+            <Text className={item.transactionType === 'Withdraw' ? "text-red-500  capitalize" : item.transactionType === 'Deposit' ? "text-green-500  capitalize" : 'text-blue-500 capitalize'}>{item.transactionType}</Text>
             <Text className='text-gray-500 mt-1'>{moment(item.transactionTime).startOf('day').fromNow()}</Text>
         </View>
       </View>

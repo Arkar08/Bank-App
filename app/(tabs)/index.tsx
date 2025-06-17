@@ -90,7 +90,7 @@ const HomeScreen = () => {
             </View>
           </View>
           <Pressable className="w-[40px]  p-2 h-[40px] justify-center items-center" style={{borderRadius:99999}} onPress={notiClick}>
-            <Ionicons name="notifications" size={18} color="#59008c" />
+            <Ionicons name="notifications" size={24} color="#59008c" />
           </Pressable>
         </View>
         <CurrentView color={'white'}>

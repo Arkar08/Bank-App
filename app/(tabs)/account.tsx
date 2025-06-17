@@ -2,6 +2,7 @@ import Btn from '@/components/Btn'
 import ProfileCard from '@/components/ProfileCard'
 import { useAuthStore } from '@/store/authStore'
 import useProfile from '@/store/useProfile'
+import { useRouter } from 'expo-router'
 import React, { useState } from 'react'
 import { ActivityIndicator, Image, Platform, Text, View, ViewStyle } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
@@ -12,6 +13,7 @@ const AccountScreen = () => {
   const logout = useAuthStore((state)=> state.logout)
   const [loading,setLoading] = useState(false)
   const {userList} = useProfile()
+  const router = useRouter()
 
   const logoutClick = async() => {
     setLoading(true)
@@ -47,6 +49,9 @@ const AccountScreen = () => {
       }),
   };
 
+  const handleEdit = () => {
+      router.push("/profile")
+  }
 
   return (
     <SafeAreaView className='flex-1'>
@@ -62,10 +67,10 @@ const AccountScreen = () => {
           }
         </View>
         <View className='mt-4'>
-          <Text className='text-center text-xl font-semibold text-[#59008c] capitalize'>{userList.name}</Text>
-          <Text className='text-center text-xl font-semibold text-[#59008c]'>{userList.email}</Text>
+          <Text className='text-center font-semibold text-[#59008c] capitalize'>{userList.name}</Text>
+          <Text className='text-center font-semibold text-[#59008c]'>{userList.email}</Text>
           <View className='mt-4'>
-            <Btn text='Edit Profile'/>
+            <Btn text='Edit Profile' onPress={handleEdit}/>
           </View>
         </View>
       </View>
