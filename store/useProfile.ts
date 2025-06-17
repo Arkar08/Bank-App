@@ -11,6 +11,7 @@ interface ProfileProps{
         name:string,
         email:string,
         profile:string,
+        role:string,
         account:{
             balance:number,
             qrCode:string,
@@ -37,6 +38,7 @@ const useProfile = create<ProfileProps>((set)=>({
         name:'',
         email:"",
         profile:"",
+        role:"",
         account:{
             balance:0,
             qrCode:'',

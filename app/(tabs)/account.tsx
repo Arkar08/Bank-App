@@ -67,8 +67,9 @@ const AccountScreen = () => {
           }
         </View>
         <View className='mt-4'>
-          <Text className='text-center font-semibold text-[#59008c] capitalize'>{userList.name}</Text>
-          <Text className='text-center font-semibold text-[#59008c]'>{userList.email}</Text>
+          <Text className='text-center font-semibold text-[#59008c] capitalize p-2' style={{fontSize:16}}>{userList.name}</Text>
+          <Text className='text-center font-semibold text-[#59008c] p-2' style={{fontSize:14}}>{userList.email}</Text>
+          <Text className='text-center font-semibold text-[#59008c] p-2' style={{fontSize:14}}>Account Type - {userList.role}</Text>
           <View className='mt-4'>
             <Btn text='Edit Profile' onPress={handleEdit}/>
           </View>
