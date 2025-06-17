@@ -6,7 +6,6 @@ import { useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { ActivityIndicator, Image, Platform, View, ViewStyle } from "react-native";
 
-const example = require("../../assets/images/girl2.jpg")
 
 const Profile = () => {
 
@@ -157,7 +156,7 @@ const Profile = () => {
                     <TransferInput placeholder='Address' label='Address' value={users.address} change={addressChange}/>
                 </View>
             </View>
-            <View className='absolute w-[100vw] bottom-10'>
+            <View className='absolute w-[96vw] bottom-10 right-[10px]'>
                 <TransferBtn text='Save' onPress={saveBtn}/>
             </View>
         </View>
