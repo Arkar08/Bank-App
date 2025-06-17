@@ -36,7 +36,7 @@ const Profile = () => {
     name:user.name,
     email:user.email,
     phoneNumber:user.phoneNumber,
-    branchName:user.branchName && '',
+    branchName:user.branch,
     address:user.address
   })
   const router = useRouter()
@@ -103,6 +103,7 @@ const Profile = () => {
     })
   }
 
+
   const saveBtn = async() => {
     if(user.role === 'Customer'){
         delete users.branchName;
@@ -131,7 +132,11 @@ const Profile = () => {
         <View className='relative px-[10px] h-[100%]'>
             <View className="justify-center items-center mt-4">
                 <View style={shadowStyle} className="relative">
-                    <Image source={example} className='w-full h-full object-cover rounded-full'/>
+                    {
+                        user.profile && (
+                            <Image source={{uri:user.profile}} className='w-full h-full object-cover rounded-full'/>
+                        )
+                    }
                     <MaterialCommunityIcons name="camera-plus" size={38} color="gray" className='absolute bottom-0 right-0'/>
                 </View>
             </View>
@@ -146,7 +151,7 @@ const Profile = () => {
                     <TransferInput placeholder='Phone Number' keyboardType={'numeric'} label='Phone Number' value={users.phoneNumber} change={phoneChange}/>
                 </View>
                 <View>
-                    <TransferInput placeholder='Branch Name' label='Branch Name' value={users.branchName} editable={user.role === 'Customer'? false:true} change={branchChange}/>
+                    <TransferInput placeholder='Branch Name' label='Branch Name' value={users.branchName} editable={user.role === 'Customer'? false : true} change={branchChange}/>
                 </View>
                 <View>
                     <TransferInput placeholder='Address' label='Address' value={users.address} change={addressChange}/>
