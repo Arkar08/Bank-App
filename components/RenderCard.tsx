@@ -1,4 +1,3 @@
-import moment from 'moment'
 import React from 'react'
 import { Image, Text, View } from 'react-native'
 
@@ -23,7 +22,7 @@ const RenderCard = ({item}:renderProp) => {
         </View>
         <View>
             <Text className={item.transactionType === 'Withdraw' ? "text-red-500  capitalize" : item.transactionType === 'Deposit' ? "text-green-500  capitalize" : 'text-blue-500 capitalize'}>{item.transactionType}</Text>
-            <Text className='text-gray-500 mt-1'>{moment(item.transactionTime).startOf('day').fromNow()}</Text>
+            <Text className='text-gray-500 mt-1'>{item.transactionTime}</Text>
         </View>
       </View>
       <View>
