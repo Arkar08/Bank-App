@@ -29,14 +29,13 @@ const Profile = () => {
       }),
   };
 
-  const {getUserId,user,updateUser} = useProfile()
+  const {getUsers,userList,updateUser} = useProfile()
   const [loading,setLoading] = useState(false)
   const [users,setUsers] = useState({
-    name:user.name,
-    email:user.email,
-    phoneNumber:user.phoneNumber,
-    branchName:user.branch,
-    address:user.address
+    name:userList.name,
+    email:userList.email,
+    phoneNumber:userList.phoneNumber,
+    address:userList.address
   })
   const router = useRouter()
 
@@ -44,7 +43,7 @@ const Profile = () => {
     const fetchUser = async()=>{
         setLoading(true)
         try {
-            await getUserId()
+            await getUsers()
         } catch (error) {
             throw(error)
         }finally{
@@ -52,7 +51,7 @@ const Profile = () => {
         }
     }
     fetchUser()
-  },[getUserId])
+  },[getUsers])
 
   if(loading){
     return (
@@ -86,13 +85,6 @@ const Profile = () => {
     })
   }
 
-  const branchChange = (text:string) => {
-    setUsers((prev)=>{
-        return ({
-            ...prev,branchName:text
-        })
-    })
-  }
 
   const addressChange = (text:string) => {
     setUsers((prev)=>{
@@ -104,26 +96,14 @@ const Profile = () => {
 
 
   const saveBtn = async() => {
-    if(user.role === 'Customer'){
-        delete users.branchName;
         try {
             const response:any = await updateUser(users)
             if(response.message === 'Update User Successfully.'){
-                router.replace("/(tabs)/account")
+                router.replace("/(tabs)")
             }
         } catch (error) {
             throw(error)
         }
-    }else{
-         try {
-            const response:any = await updateUser(users)
-            if(response.message === 'Update User Successfully.'){
-                router.replace("/(tabs)/account")
-            }
-        } catch (error) {
-            throw(error)
-        }
-    }
   }
 
     return (
@@ -131,14 +111,14 @@ const Profile = () => {
             <View className="justify-center items-center mt-4">
                 <View style={shadowStyle} className="relative">
                     {
-                        user.profile && (
-                            <Image source={{uri:user.profile}} className='w-full h-full object-cover rounded-full'/>
+                        userList.profile && (
+                            <Image source={{uri:userList.profile}} className='w-full h-full object-cover rounded-full'/>
                         )
                     }
                     <MaterialCommunityIcons name="camera-plus" size={38} color="gray" className='absolute bottom-0 right-0'/>
                 </View>
             </View>
-            <View className='gap-5'>
+            <View className='gap-4'>
                 <View>
                     <TransferInput placeholder='Name' label='Name' value={users.name} change={nameChange}/>
                 </View>
@@ -146,10 +126,7 @@ const Profile = () => {
                     <TransferInput placeholder='Email'label='Email' value={users.email} change={emailChange}/>
                 </View>
                 <View>
-                    <TransferInput placeholder='Phone Number' keyboardType={'numeric'} label='Phone Number' value={users.phoneNumber} change={phoneChange}/>
-                </View>
-                <View>
-                    <TransferInput placeholder='Branch Name' label='Branch Name' value={users.branchName} editable={user.role === 'Customer'? false : true} change={branchChange}/>
+                    <TransferInput placeholder='Phone Number' keyboardType={'numeric'} label='Phone Number' value={users.phoneNumber.toString()} change={phoneChange}/>
                 </View>
                 <View>
                     <TransferInput placeholder='Address' label='Address' value={users.address} change={addressChange}/>

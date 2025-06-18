@@ -12,6 +12,8 @@ interface ProfileProps{
         email:string,
         profile:string,
         role:string,
+        phoneNumber:number,
+        address:string,
         account:{
             balance:number,
             qrCode:string,
@@ -27,7 +29,6 @@ interface ProfileProps{
     };
     getUsers:()=>void;
     getAccount:(accountNo:string) =>void;
-    getUserId:()=>void;
     user:any;
     updateUser:(data:any) => void;
 }
@@ -39,6 +40,8 @@ const useProfile = create<ProfileProps>((set)=>({
         email:"",
         profile:"",
         role:"",
+        phoneNumber:0,
+        address:"",
         account:{
             balance:0,
             qrCode:'',
@@ -72,18 +75,6 @@ const useProfile = create<ProfileProps>((set)=>({
             axios.defaults.headers.common['Authorization'] = `Baerer ${token}`
             const response = await axios.get(`${API_URL}account/find/${accountNo}`)
             set({account:response.data.data})
-        } catch (error:any) {
-            throw(error.response.data.message)
-        }
-    },
-
-    getUserId:async()=>{
-        const token = await SecureStore.getItemAsync("token")
-        const userId = await SecureStore.getItemAsync("userId")
-         try {
-            axios.defaults.headers.common['Authorization'] = `Baerer ${token}`
-            const response = await axios.get(`${API_URL}user/${userId}`)
-            set({user:response.data.data})
         } catch (error:any) {
             throw(error.response.data.message)
         }

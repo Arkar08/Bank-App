@@ -40,8 +40,8 @@ const HomeScreen = () => {
       }
     }
 
-    fetchRecent()
     fetchUserProfile()
+    fetchRecent()
   },[getRecentList,getUsers])
 
 

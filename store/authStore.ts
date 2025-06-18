@@ -89,6 +89,7 @@ export const useAuthStore = create<AuthProps>((set)=>({
                 await axios.post(`${API_URL}auth/logout`)
                 await SecureStore.deleteItemAsync("token")
                 await SecureStore.deleteItemAsync("user")
+                await SecureStore.deleteItemAsync("userId")
                 set({ user: null, token: null });
                 axios.defaults.headers.common['Authorization'] = '';
             }

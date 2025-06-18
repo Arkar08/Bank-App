@@ -17,7 +17,6 @@ interface TransferProps{
 
 const useTransfer = create<TransferProps>((set)=>({
     users:{},
-
     postPhone: async(phoneNumber:string)=>{
         const token = await SecureStore.getItemAsync('token')
         try {
