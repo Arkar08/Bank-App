@@ -1,4 +1,5 @@
 import { useAuthStore } from "@/store/authStore";
+import 'expo-dev-client';
 import { Stack, useRouter, useSegments } from "expo-router";
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from "react";
