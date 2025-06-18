@@ -79,6 +79,12 @@
         "projectId": "89410be6-020d-49f1-ae6c-638194295539"
       }
     },
-    "owner": "arkar08"
+    "owner": "arkar08",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/89410be6-020d-49f1-ae6c-638194295539"
+    }
   }
 }
